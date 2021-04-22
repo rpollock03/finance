@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Stock</th>
+      <th scope="col">Shares</th>
+      <th scope="col">Price</th>
+      <th scope="col">Buy/Sell</th>
+      <th scope="col">Transacted</th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for trans in transactions %}
+    <tr>
+      <td>{{trans["stockName"]}}({{trans["symbol"]}})</td>
+      <td>{{trans["shares"]}}</td>
+      <td>{{trans["price"]}}</td>
+      <td>{{trans["transType"]}}</td>
+      <td>{{trans["dateTime"]}}</td>
+    </tr>
+ {%endfor%}
+  </tbody>
+</table>
+
+
+
+
+
+
+{% endblock %}
+
+
+
+<!-- (f"{row['name']})-->

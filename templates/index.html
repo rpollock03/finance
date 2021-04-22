@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Symbol</th>
+      <th scope="col">Name</th>
+      <th scope="col">Shares</th>
+      <th scope="col">Buy Price</th>
+      <th scope="col">Current Price</th>
+      <th scope="col">Total Value</th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for stock in holdings %}
+    <tr>
+      <td>{{stock["symbol"]}}</td>
+      <td>{{stock["stockName"]}}</td>
+      <td>{{stock["currentHolding"]}}</td>
+      <td>{{stock["price"]|usd}}</td>
+      <td>{{stock["currentPrice"]|usd}}</td>
+      <td>{{stock["holdingValue"]|usd}}</td>
+ </tr>
+ {%endfor%}
+ <tr>
+   <td>CASH BALANCE</td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td>{{balance|usd}}</td>
+ </tr>
+ <tr>
+   <td>TOTAL VALUE</td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td>{{portfolioValue|usd}}</td>
+ </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+{% endblock %}
+
+
+
+<!-- (f"{row['name']})-->

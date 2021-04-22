@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Settings
+{% endblock %}
+
+{% block main %}
+    <form id="changePassword" action="/settings" method="post">
+    <p>Change Password</p>
+        <div class="form-group">
+            <label for="newPassword">Enter New Password</label>
+            <input autocomplete="off" required type="password" autofocus id="newPassword" class="form-control" name="newPassword" placeholder="New Password">
+        </div>
+        <div class="form-group">
+            <label for="confirmation">Confirm New Password</label>
+            <input autocomplete="off" required type="password" autofocus id="confirmation" class="form-control" name="confirmation" placeholder="Confirm New Password">
+        </div>
+
+        <button class="btn btn-primary" type="submit">Change Password</button>
+    </form>
+    <br>
+
+    <form id="additionalCash" action="/deposit" method="post">
+        <p>Add additional funds</p>
+        <div class="form-group">
+            <label for="addFunds">How much would you like to deposit></label>
+            <input id="addCash" required type="number" class="form-control" name="addCash" placeholder="$1000">
+        </div>
+        <button class="btn btn-primary" type="submit">Deposit</button>
+    </form>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#changePassword").submit(function(event){
+        event.preventDefault();
+        let conf=$("#confirmation").val();
+        let newPass=$("#newPassword").val();
+        $.get('/checkpw?new='+newPass+'&conf='+conf, function(response){
+           if(response==true){
+                document.getElementById("changePassword").submit();
+           }
+           else{
+              alert("Passwords don't match!");
+           }
+        });
+    });
+
+
+        $("additionalCash").submit(function(event){
+            event.preventDefault();
+            let addCash=$("#addCash").val();
+            if(addCash<100 ){
+                alert("Deposit must be greater than $100");
+            }
+            else{
+                document.getElementById("additionalCash").submit();
+            }
+        })
+
+
+
+
+
+
+});
+
+
+
+
+
+
+</script>
+
+{% endblock %}

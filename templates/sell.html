@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+
+    <form action="/sell" method="post">
+        <div class="form-group">
+            <select name = "symbol" class="custom-select">
+              {% for stock in holdings %}
+                <option value='{{ stock["transID"] }}'> {{stock["stockName"]}}({{stock["symbol"]}}) - {{stock["currentHolding"]}} shares</option>
+                {%endfor%}
+            </select>
+        </div>
+ <div class="form-group">
+            <input autofocus class="form-control" name="shares" placeholder="#" type="text">
+        </div>
+
+
+        <button class="btn btn-primary" type="submit">Sell</button>
+    </form>
+{% endblock %}
